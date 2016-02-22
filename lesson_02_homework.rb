@@ -39,7 +39,6 @@ class Waitlist
   # def initialize
   #   @add_party_name = add_party_name
   #   @list  = list 
-  #   @list1 = list1  
   # end
 
 # =>add_party works
@@ -51,7 +50,7 @@ class Waitlist
     end
   end
 
-# =>list  NOT working
+# =>list working
   def list(list)
     puts "Current list:" 
     list.each do |name|
