@@ -34,52 +34,56 @@ puts area_of_triangle(base, height)
 # Coding
 
 class Waitlist
-  attr_accessor :add_party_name, :list
+  attr_accessor :add_party_name, :list, :seated, :output, :name
   ##> Initialize causes errors....Why???
-  # def initialize
-  #   @add_party_name = add_party_name
-  #   @list  = list 
-  # end
+   def initialize 
+     @list  = ["kareem grant", "brian young", "ted dansen", 'helga horchow' ] 
+   end
 
-# =>add_party works
-  def add_party(add_party_name, list)
-    list << add_party_name
-    puts "Updated waitlist:"
-    list.each do |name|
-      puts name
-    end
+# =>add_party
+  def add_party(add_party_name, output)
+    @list << add_party_name
+    output[:name] = add_party_name
+    output[:list_array] = @list
+    return output
   end
 
-# =>list working
-  def list(list)
-    puts "Current list:" 
-    list.each do |name|
-      puts name
-    end
+# =>list
+  def list(output)
+    output[:list_array]=@list
+    return output
   end
 
-# =>seat works
-  def seat(list)
-    puts "Party Seated: #{list.shift}"
-    puts ""
-    puts "Updated list:" 
-    list.each do |name|
-      puts name
-    end
+# =>seat
+  def seat(output)
+    output[:seated] = @list.shift
+    output[:list_array] = @list    
+    return output
   end
 
 
 #class end
 end
 
-list = ["kareem grant", "brian young", "ted dansen", 'helga horchow' ]
+#Method: add_party_name to waitlist
+add_party_name = "lawrence olivier"
+list = Waitlist.new
+output={}
+list.add_party(add_party_name,output)
+puts "New party added to waitlist: #{output[:name]}"
+puts "\nUpdated Waitlist: "
+output[:list_array].each {|name| puts name}
+puts ""
 
-#add_party_name to waitlist
-add_party_name="lawrence olivier"
-Waitlist.new.add_party(add_party_name, list)
 
-#output the waiting list
-Waitlist.new.list(list)
+#Method: Print the current waiting list
+list.list(output)
+puts "current waiting list:"
+output[:list_array].each {|name| puts name}
 
-#seat the fist party and output the updated list
-Waitlist.new.seat(list)
+
+#Method: seat the fist party and print the updated list
+list.seat(output)
+puts "\nPerson seated: #{output[:seated]}"
+puts "Updated waiting list:"
+output[:list_array].each {|name| puts name}
