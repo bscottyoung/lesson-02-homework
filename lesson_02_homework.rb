@@ -34,56 +34,112 @@ puts area_of_triangle(base, height)
 # Coding
 
 class Waitlist
-  attr_accessor :add_party_name, :list, :seated, :output, :name
-  ##> Initialize causes errors....Why???
-   def initialize 
-     @list  = ["kareem grant", "brian young", "ted dansen", 'helga horchow' ] 
-   end
+  attr_writer :output
+  attr_reader :list
 
-# =>add_party
-  def add_party(add_party_name, output)
+  def initialize 
+      @list=["Kareem", "Brian"]
+  end
+
+# => add_party 
+  def add_party(add_party_name)
     @list << add_party_name
-    output[:name] = add_party_name
-    output[:list_array] = @list
-    return output
   end
 
-# =>list
-  def list(output)
-    output[:list_array]=@list
-    return output
+# =>list  
+  def list
+    @list
   end
 
-# =>seat
-  def seat(output)
-    output[:seated] = @list.shift
-    output[:list_array] = @list    
-    return output
+# => seat 
+  def seat
+    @list = @list.drop(1)
   end
-
-
 #class end
 end
 
-#Method: add_party_name to waitlist
-add_party_name = "lawrence olivier"
-list = Waitlist.new
-output={}
-list.add_party(add_party_name,output)
-puts "New party added to waitlist: #{output[:name]}"
-puts "\nUpdated Waitlist: "
-output[:list_array].each {|name| puts name}
-puts ""
+
+# =>                      ** FOR HOMEWORK: ** 
+#Method: add_party 
+list=Waitlist.new
+add_party_name = "Ted"
+puts "Party added to waitlist: #{add_party_name} and new waitlist is: #{list.add_party(add_party_name)}"
+
+#Method: list 
+list=Waitlist.new
+puts "Current Waitlist: #{list.list}"
+
+#Method: seat 
+list=Waitlist.new
+puts "Updated list after first person seated: #{list.seat}"
+
+# ----------------------END OF HOMEWORK-----------------------------
 
 
-#Method: Print the current waiting list
-list.list(output)
-puts "current waiting list:"
-output[:list_array].each {|name| puts name}
+# ----------------------BEGIN MY APPROACH-----------------------------
+# =>MY APPROACH...allows me to use the list for other operations **
+
+# class Waitlist
+#   attr_writer :output
+#   attr_reader :list
+
+#   def initialize 
+#       @list=["Kareem", "Brian"]
+#   end
+
+# => METHOD: list
+  # def list   
+  #   output[:list_array]=@list
+  # end
+
+# => METHOD: add_party
+  # def add_party(output)
+  #   puts "enter party to be added to waitlist:"
+  #   add_party_name = gets.chomp
+  #   @list << add_party_name
+  #   output[:name] = add_party_name
+  #   output[:list_array] = @list
+  #   return output
+  # end
+
+# => METHOD: seat 
+  # def seat(output)
+  #   output[:seated] = @list.shift
+  #   output[:list_array] = @list    
+  #   return output
+  # end
+# end
 
 
-#Method: seat the fist party and print the updated list
-list.seat(output)
-puts "\nPerson seated: #{output[:seated]}"
-puts "Updated waiting list:"
-output[:list_array].each {|name| puts name}
+
+# => CALL add_party
+# list = Waitlist.new
+# output={}
+# list.add_party(output)
+# puts "New party added to waitlist: #{output[:name]}"
+# puts "Do you want to add another name? (Y or N)"
+# ans=gets.capitalize.chomp
+# while ans=="Y"  do
+#   list.add_party(output)
+#   puts "New party added to waitlist: #{output[:name]}"
+#   puts "Do you want to add another name? (Y or N)"  
+#   ans=gets.capitalize.chomp
+# end
+# puts "\nUpdated Waitlist: "
+# output[:list_array].each {|name| puts name}
+# puts ""
+#-----------------------------------------------------
+
+# => CALL list
+#list=Waitlist.new
+# puts "current waiting list:"
+# list.list(output)
+#puts output[:array_list].each {|name| puts name}
+#-----------------------------------------------------
+
+# => CALL seat
+# list = Waitlist.new
+# list.seat(output)
+# puts "\nPerson seated: #{output[:seated]}"
+# puts "Updated waiting list:"
+# output[:list_array].each {|name| puts name}
