@@ -15,8 +15,10 @@ end
 
 def fizz_buzz_to(limit)
 #bsy> create new method with 'limit' as argument
-  1.upto(limit).each do |num|
+   1.upto(limit).each do |num|
 #bsy> up to the 'limit' call the above method (fizzbuzz) and output to console the value    
+#bsy> per your comment, 'puts' should not be inside of a method.
+#bsy> the puts should be 2 spaces indented to line up with 1.upto...
     puts fizzbuzz(num)
   end
 end
